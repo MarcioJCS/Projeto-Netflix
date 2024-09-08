@@ -1,0 +1,48 @@
+ <!-- a documentação dos componentes SAPUI5 estão no site: https://sapui5.hana.ondemand.com/ -->
+<mvc:View  controllerName="projetonetflix.controller.Inicio"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:layout="sap.ui.layout"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+
+      <subHeader> <!-- Abrindo e fechando o cabeçalho da pagina-->
+        
+        <Toolbar   >
+           <content>
+             <Link id="Link_inicio"    text="Ínicio"  press="onInicioLinkPress"/><!--Criando evento-->
+             <Link id="Link_Filmes"    text="FILMES" />
+             <Link id="Link_Series"    text="SÉRIES" />
+             
+             <ToolbarSpacer  />
+             <SearchField      width="30%" id="idSearchfield" search="onBuscarDados" /> 
+    
+    
+           </content>
+        </Toolbar>
+      </subHeader>
+      <!-- Montando os frames da tela onde será exibido os titulos do filme ou série-->
+      <content>
+        <layout:Grid  content="{APINetflix>/titles}" > <!-- repita na tela elementos que estão dentro desse arquivo-->
+            <VBox  width="300px" height="350px" class="preencherBoxPreto">
+               <Image 
+              src="{APINetflix>jawSummary/backgroundImage/url}"
+              width="100%"       height="100%"/>
+              <Image 
+              src="{APINetflix>jawSummary/logoImage/url}"
+              width="50%"       height="50%" class ="margemLogo"/> <!-- Utilizado para sobrer as imagens e o texto ficar em cima da imagem-->
+                 <Text  text="{APINetflix>jawSummary/title}" class="corTextoBranco espacoRodape margemLogo"/>
+                 <Text  text="{APINetflix>jawSummary/synopsis}" class="corTextoBranco espacoRodape margemLogo"/>
+                 <Text  text="{APINetflix>jawSummary/genres/1/name}" class="corTextoBranco espacoRodape margemLogo"/>
+                 <Text  text="{APINetflix>jawSummary/genres/2/name}"  class="corTextoBranco espacoRodape margemLogo"/>
+            </VBox>
+
+            
+        </layout:Grid>
+      
+      
+      </content>
+
+        
+    
+    </Page>
+</mvc:View>
